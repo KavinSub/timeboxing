@@ -1,0 +1,120 @@
+/* Mobile (default) */
+.tasks-container {
+	display: none;
+	height: 100vh;
+	overflow: auto;
+}
+
+.task-field {
+	display: block;
+	margin: 0 auto;
+	outline: none;
+	border: 0;
+	color: #383F51;
+	border-bottom: 2px solid #FF3C38;
+}
+
+.tasks-header {
+	color: #FF3C38;
+	text-align: center;
+}
+
+.task-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.task {
+	font-size: 24px;
+	position: relative;
+}
+
+.task-flag {
+	cursor: pointer;
+	float: left;
+	background-color: white;
+	border: 2px solid #FF3C38;
+	position: absolute;
+	top: 50%;
+	transition: 200ms;
+	-webkit-transition: 200ms;
+}
+
+.task-title {
+	color: #383F51;
+	display: inline-block;
+	transition: 200ms;
+	-webkit-transition: 200ms;
+	text-align: center;
+}
+
+.task-remove {
+	color: #383F51;
+	display: inline-block;
+	text-align: right;
+	position: absolute;
+	cursor: pointer;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	.tasks-container {
+		display: block;
+	}
+
+	.tasks-header {
+		font-size: 28px;
+		font-weight: 600;
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+
+	.task-field {
+		font-size: 28px;
+	}
+
+	.task-flag {
+		width: 20px;
+		height: 20px;
+		border-radius: 4px;
+		margin-right: 8px;
+		margin-top: -10px;
+	}
+
+	.task-title {
+		padding-left: 28px;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	.tasks-container {
+		display: block;
+	}
+
+	.task-field {
+		font-size: 28px;
+	}
+
+	.task-title {
+		padding-left: 34px;
+	}
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	.tasks-container {
+		display: block;
+	}
+
+	.task-field {
+		font-size: 28px;
+	}
+
+	.task-title {
+		padding-left: 40px;
+	}
+}
