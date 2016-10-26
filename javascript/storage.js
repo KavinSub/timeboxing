@@ -1,5 +1,5 @@
 var tasksKey = "tasks"; // localStorage[tasksKey] -> [Task]
-var timeboxesKey = "timeboxes"; 
+var timeboxesKey = "timebox"; // prefix for timebox storage 
 
 class Storage {
 
@@ -42,6 +42,36 @@ class Storage {
 		localStorage.setItem(objectKey, JSON.stringify(emptyArray));
 	}
 
+	// Description: Stores key value pair
+	// Arguments:
+	// [1] key
+	// [2] value - Must be number or string
+	// Return Value: None
+	static set(key, value){
+		localStorage.setItem(key, value);
+	}
+
+	// Description: Retrieves value stored at key
+	// [1] key
+	// Return Value: Value stored at key
+	static get(key){
+		return localStorage.getItem(key);
+	}
+
+	// Description: Completely clears out local storage. Use with caution.
+	// Arguments: None
+	// Return Value: None
+	static clear(){
+		localStorage.clear();
+	}
+
+	// Description: Removes (key, value) from local storage.
+	// Arguments:
+	// [1] key
+	// Return Value: None
+	static removeItem(key){
+		localStorage.removeItem(key);
+	}
 }
 
 
@@ -95,4 +125,37 @@ class TaskStorageHelper {
 	static clearTasks(){
 		Storage.clearObjects(tasksKey);
 	}
+}
+
+class TimeboxStorageHelper {
+
+	static storeTimeboxAtDate(timebox){
+		var year = timebox.dateCreated.getFullYear();
+		var month = timebox.dateCreated.getMonth();
+		var date = timebox.dateCreated.getDate();
+
+		var key = [timeboxesKey, year, month, date].join("-");
+		console.log(key);
+
+		var currentTime = Storage.get(key);
+		currentTime = currentTime ? parseInt(currentTime):0;
+		currentTime += timebox.length;
+
+		Storage.set(key, currentTime);		
+	}
+
+	static storeTimeboxAtTime(timebox){
+		var day = timebox.getDate();
+		var hour = timebox.getHours();
+
+		var key = [timeboxesKey, day, hour].join("-");
+		console.log("key");
+
+		var currentTime = Storage.get(key);
+		currentTime = currentTime ? parseInt(currentTime):0;
+		currentTime += timebox.length;
+
+		Storage.set(key, currentTime);
+	}
+
 }
