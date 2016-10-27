@@ -18,7 +18,8 @@ class CalendarView {
 
 	static drawCalendar(){
 		CalendarView.drawGrid();
-		CalendarView.drawNumbers();	
+		CalendarView.drawNumbers();
+		CalendarView.setTimeThisMonth();
 	}
 
 	// [1] Determine the size of 1 calendar day
@@ -103,16 +104,39 @@ class CalendarView {
 		// [2]
 		var timeboxes = Math.floor(time/30);
 		var coords = CalendarView.dateToCoordinates(date);
-		var group = document.getElementById([coords.row, ",", coords.column]);
+		var group = document.getElementById([coords.row, ",", coords.column].join(""));
 
 		var boxSize = CalendarView.getDaySize();
-		var bubbleScalingFactor = 0.9;
+		var bubbleScalingFactor = 0.75;
 		var bubbleBoxSize = boxSize/8;
 		var bubbleRadius = (bubbleBoxSize * bubbleScalingFactor)/2;
 
-		// for(var i = 0; i < timeboxes; i++){
-		// }
-	}	
+		for(var i = 0; i < timeboxes; i++){
+			var row = Math.floor(i/8);
+			var column = i % 8;
+			var x = column * bubbleBoxSize;
+			var y = (row + 2) * bubbleBoxSize;
+
+			var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+			circle.setAttribute("cx", x + bubbleBoxSize/2);
+			circle.setAttribute("cy", y + bubbleBoxSize/2);
+			circle.setAttribute("r", bubbleRadius);
+			circle.setAttribute("fill", "#FF3C38");
+			group.appendChild(circle);
+		}
+	}
+
+	// Draws all the timeboxes for this month
+	static setTimeThisMonth(){
+		var today = new Date();
+		var year = today.getFullYear();
+		var month = today.getMonth();
+
+		var daysInMonth = new Date(year, month + 1, 0).getDate();
+		for(var i = 1; i <= daysInMonth; i++){
+			CalendarView.setTimeAtDate(new Date(year, month, i));
+		}
+	}
 
 	static dateToCoordinates(date){
 		var year = date.getFullYear();
