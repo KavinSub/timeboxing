@@ -158,4 +158,14 @@ class TimeboxStorageHelper {
 		Storage.set(key, currentTime);
 	}
 
+	static getTimeAtDate(date){
+		var year = date.getFullYear();
+		var month = date.getMonth();
+		var date = date.getDate();
+
+		var key = [timeboxesKey, year, month, date].join("-");
+
+		return Storage.get(key);
+	}
+
 }

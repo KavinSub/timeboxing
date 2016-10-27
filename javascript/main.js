@@ -3,9 +3,13 @@ var inputFieldId = "task-field";
 window.onload = initialize;
 
 function initialize(){
+	// Task related functions
 	initializeTasks();
 	taskInputDisableCopyPaste();
 	taskInputEnterAction();
+
+	// Stats related functions
+	CalendarView.drawCalendar();
 }
 
 function initializeTasks(){

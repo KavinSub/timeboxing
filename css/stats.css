@@ -1,7 +1,30 @@
-.stats-container {}
+.stats-container {
+	display: block;
+	text-align: center;
+}
+
+.calendar-container {}
+
+.calendar-header {
+	color: #383F51;
+}
+
+.stats-calendar {
+	margin-top: 10px;
+	/*border: 1px solid #383F51;*/
+}
 
 @media (min-width: 768px) {
 
+	.calendar-header {
+		font-size: 60px;
+	}
+
+	.stats-calendar {
+		display: inline;
+		width: 700px;
+		height: 600px;
+	}
 }
 
 @media (min-width: 992px) {
@@ -9,5 +32,5 @@
 }
 
 @media (min-width: 1200px) {
-	
+
 }

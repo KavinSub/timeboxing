@@ -97,8 +97,6 @@ class TaskManager {
 	// [2] Update the UI, remove the list item
 	static deleteTask(e){
 		// [1]
-		console.log(e);
-
 		var taskRemove = e.srcElement || e.target;
 		var prefix = taskElements.remove + "-";
 		var taskId = taskRemove.id.substring(prefix.length);
