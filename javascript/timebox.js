@@ -1,7 +1,13 @@
 class Timebox {
 	constructor(length){
 		this.length = length;
-		this.dateCreated = new Date();
+		var today = new Date();
+		this.dateCreated = new Date(
+			today.getFullYear(), 
+			today.getMonth(), 
+			today.getDate(), 
+			today.getHours(), 
+			today.getMinutes() - length);
 	}
 }
 
@@ -84,8 +90,9 @@ class CalendarView {
 
 			var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
 			text.innerHTML = i + 1;
-			text.setAttribute("font-size", 18);
-			text.setAttribute("y", 18);
+			var fontSize = Math.floor(1.8 * CalendarView.getDaySize()/8);
+			text.setAttribute("font-size", fontSize);
+			text.setAttribute("y", fontSize);
 			text.setAttribute("x", 2);
 			text.setAttribute("color", "#383F51");
 
@@ -189,5 +196,9 @@ class CalendarView {
 }
 
 class BubbleChartView {
+
+	static drawBubbleChart(){
+
+	}
 
 }

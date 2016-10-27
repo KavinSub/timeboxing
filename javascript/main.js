@@ -16,7 +16,6 @@ function initialize(){
 
 // Anything that must be done on window resize
 function reinitialize(){
-	console.log("resize");
 	CalendarView.clearCalendar();
 	CalendarView.drawCalendar();
 }

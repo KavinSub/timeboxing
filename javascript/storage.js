@@ -135,13 +135,13 @@ class TimeboxStorageHelper {
 		var date = timebox.dateCreated.getDate();
 
 		var key = [timeboxesKey, year, month, date].join("-");
-		console.log(key);
 
 		var currentTime = Storage.get(key);
 		currentTime = currentTime ? parseInt(currentTime):0;
 		currentTime += timebox.length;
 
-		Storage.set(key, currentTime);		
+		Storage.set(key, currentTime);
+		return key;		
 	}
 
 	static storeTimeboxAtTime(timebox){
@@ -149,13 +149,13 @@ class TimeboxStorageHelper {
 		var hour = timebox.getHours();
 
 		var key = [timeboxesKey, day, hour].join("-");
-		console.log("key");
 
 		var currentTime = Storage.get(key);
 		currentTime = currentTime ? parseInt(currentTime):0;
 		currentTime += timebox.length;
 
 		Storage.set(key, currentTime);
+		return key;
 	}
 
 	static getTimeAtDate(date){
