@@ -10,8 +10,8 @@
 }
 
 .stats-calendar {
+	display: inline;
 	margin-top: 10px;
-	/*border: 1px solid #383F51;*/
 }
 
 @media (min-width: 768px) {
@@ -21,13 +21,21 @@
 	}
 
 	.stats-calendar {
-		display: inline;
 		width: 700px;
 		height: 600px;
 	}
 }
 
 @media (min-width: 992px) {
+
+	.calendar-header {
+
+	}
+
+	.stats-calendar {
+		width: 910px;
+		height: 780px;
+	}
 
 }
 

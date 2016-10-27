@@ -1,7 +1,9 @@
 var inputFieldId = "task-field";
 
 window.onload = initialize;
+window.onresize = reinitialize;
 
+// Anything that must be done on first time load
 function initialize(){
 	// Task related functions
 	initializeTasks();
@@ -9,6 +11,13 @@ function initialize(){
 	taskInputEnterAction();
 
 	// Stats related functions
+	CalendarView.drawCalendar();
+}
+
+// Anything that must be done on window resize
+function reinitialize(){
+	console.log("resize");
+	CalendarView.clearCalendar();
 	CalendarView.drawCalendar();
 }
 

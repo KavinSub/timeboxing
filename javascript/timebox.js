@@ -20,6 +20,7 @@ class CalendarView {
 		CalendarView.drawGrid();
 		CalendarView.drawNumbers();
 		CalendarView.setTimeThisMonth();
+		CalendarView.setHeader();
 	}
 
 	// [1] Determine the size of 1 calendar day
@@ -138,6 +139,18 @@ class CalendarView {
 		}
 	}
 
+	static setHeader(){
+		var today = new Date();
+		var header = [CalendarView.getMonth(today.getMonth()), today.getFullYear()].join(" ");
+
+		var calendarHeader =  document.getElementById("calendar-header");
+		calendarHeader.innerHTML = header;
+	}
+
+	static updateTimeboxToday(){
+		CalendarView.setTimeAtDate(new Date());
+	}
+
 	static dateToCoordinates(date){
 		var year = date.getFullYear();
 		var month = date.getMonth();
@@ -157,6 +170,20 @@ class CalendarView {
 		var calendar = document.getElementById(calendarId);
 
 		return calendar.getBoundingClientRect().width/7;
+	}
+
+	// Helper function, returns the name of a month given the number
+	static getMonth(monthNumber){
+		var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novemeber", "December"];
+		return months[monthNumber];
+	}
+
+	// Removes all child elements of calendar svg
+	static clearCalendar(){
+		var calendar = document.getElementById("calendar");
+		while(calendar.firstChild){
+			calendar.removeChild(calendar.firstChild);
+		}
 	}
 
 }
