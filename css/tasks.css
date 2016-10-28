@@ -61,7 +61,7 @@
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 	.tasks-container {
-		display: block;
+		display: flex;
 	}
 
 	.tasks-header {
