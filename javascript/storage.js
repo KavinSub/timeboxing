@@ -173,4 +173,9 @@ class TimeboxStorageHelper {
 		return Storage.get(key);
 	}
 
+	static storeTimebox(timebox){
+		TimeboxStorageHelper.storeTimeboxAtDate(timebox);
+		TimeboxStorageHelper.storeTimeboxAtTime(timebox);
+	}
+
 }

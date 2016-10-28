@@ -1,0 +1,131 @@
+.main-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+}
+
+.timer-container {
+	display: flex;
+	margin-bottom: 30px;
+}
+
+.timer {
+	width: 300px;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 20px;
+	border-radius: 2px;
+}
+
+.timer-time-container {
+	width: 300px;
+	height: 150px;
+	text-align: center;
+	position: relative;
+}
+
+.timer-time {
+	font-size: 80px;
+	margin: 0px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #383F51;
+}
+
+.timer-slider-container {
+	height: 24px;
+}
+
+.timer-slider {
+	width: 300px;
+	min-width: 0px;
+	max-width: 300px;
+	height: 2px;
+	background-color: #FF3C38;
+	top: 13px;
+	position: relative;
+}
+
+.timer-slider-control {
+	height: 24px;
+	width: 24px;
+	background-color: #FF3C38;
+	border-radius: 12px;
+	cursor: pointer;
+}
+
+.timer-controls {
+	width: 300px;
+	height: 48px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.timer-controls-wrapper {
+	text-align: center;
+}
+
+.timer-button {
+	border: 0;
+	position: relative;
+	cursor: pointer;
+	outline: none;
+	width: 30px;
+	height: 30px;
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+	.timer {
+		width: 400px;
+		height: 266px;
+	}
+
+	.timer-time-container {
+		width: 400px;
+		height: 200px;
+	}
+
+	.timer-time {
+		font-size: 110px;
+	}
+
+	.timer-slider-container {
+		height: 30px;
+	}
+
+	.timer-slider {
+		width: 400px;
+		min-width: 0px;
+		max-width: 400px;
+		top: 16px;
+	}
+
+	.timer-slider-control {
+		height: 30px;
+		width: 30px;
+		border-radius: 15px;
+	}
+
+	.timer-controls {
+		width: 400px;
+		height: 60px;
+	}
+
+	.timer-button {
+		width: 40px;
+		height: 40px;
+	}
+}
+
+@media (min-width: 1200px) {
+
+}

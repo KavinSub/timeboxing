@@ -14,8 +14,9 @@ class Timebox {
 class TimeboxManager {
 
 	// Should be called upon timebox completion
-	static updateView(timebox){
-
+	static updateViews(timebox){
+		CalendarView.setTimeAtDate(new Date()); // Only update today's box
+		BubbleChartView.redrawChart();
 	}
 
 }
@@ -338,6 +339,10 @@ class BubbleChartView {
 	// [2] Draw bubbles
 	static drawBubbles(){
 		var dataset = BubbleChartView.getDataset();
+		console.log(dataset.data.length);
+		if(dataset.min == 0 && dataset.max == 0){
+			return;
+		}
 		var box = BubbleChartView.getBoxDimensions();
 
 		// [1]
@@ -353,7 +358,11 @@ class BubbleChartView {
 					var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 					circle.setAttribute("cx", box.width/2);
 					circle.setAttribute("cy", box.height/2);
-					circle.setAttribute("r", minRadius + ((time - dataset.min)/(dataset.max - dataset.min)) * (maxRadius - minRadius));
+					if(dataset.max != dataset.min){
+						circle.setAttribute("r", minRadius + ((time - dataset.min)/(dataset.max - dataset.min)) * (maxRadius - minRadius));
+					}else{
+						circle.setAttribute("r", (minRadius + maxRadius)/2);
+					}
 					var fraction = ((time - dataset.min)/(dataset.max - dataset.min));
 					circle.setAttribute("fill", "#FF3C38");
 
@@ -368,6 +377,11 @@ class BubbleChartView {
 		while(chart.firstChild){
 			chart.removeChild(chart.firstChild);
 		}
+	}
+
+	static redrawChart(){
+		BubbleChartView.clearChart();
+		BubbleChartView.drawBubbleChart();
 	}
 
 }

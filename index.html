@@ -5,19 +5,40 @@
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/tasks.css">
 	<link rel="stylesheet" type="text/css" href="css/stats.css">
+	<link rel="stylesheet" type="text/css" href="css/timer.css">
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 </head>
-<body>
-	<div class="tasks-container col-s-6 col-m-6 col-6">
-		<p class="tasks-header">What are your goals for today?</p>
-		<input id="task-field" class="task-field col-s-10 col-m-10 col-10" type="text" maxlength="255"></input>
-		<ul id="task-list" class="task-list col-s-10">
-		</ul>
+<body id="body">
+	<div class="main-wrapper">
+		<div class="tasks-container col-s-6 col-m-6 col-6">
+			<p class="tasks-header">What are you getting done today?</p>
+			<input id="task-field" class="task-field col-s-10 col-m-10 col-10" type="text" maxlength="255"></input>
+			<ul id="task-list" class="task-list col-s-10">
+			</ul>
+		</div>
+		<div class="timer-container col-s-6 col-m-6 col-m-6">
+			<div id="timer" class="timer">
+				<div class="timer-time-container">
+					<p id="timer-time" class="timer-time">120:00</p>
+				</div>
+				<div class="timer-slider-container">
+					<div id="timer-slider" class="timer-slider"></div>
+					<div id="timer-slider-control" class="timer-slider-control"></div>
+				</div>
+				<div class="timer-controls">
+					<div class="timer-controls-wrapper">
+						<button id="play-button" class="timer-button" style="background: url('assets/play-button.svg') no-repeat;"></button>
+						<button id="pause-button" class="timer-button" style="background: url('assets/pause-button.svg') no-repeat;"></button>
+						<button id="stop-button" class="timer-button" style="background: url('assets/stop-button.svg') no-repeat;"></button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="stats-container col-s-12 col-m-12 col-12">
 		<div class="calendar-container">
-			<h1 id="calendar-header" class="calendar-header">January 2016</h1>
+			<h1 id="calendar-header" class="calendar-header"></h1>
 			<svg id="calendar" class="calendar">
 			</svg>
 		</div>
@@ -30,5 +51,6 @@
 	<script type="text/javascript" src="javascript/storage.js"></script>
 	<script type="text/javascript" src="javascript/main.js"></script>
 	<script type="text/javascript" src="javascript/timebox.js"></script>
+	<script type="text/javascript" src="javascript/timer.js"></script>
 </body>
 </html>

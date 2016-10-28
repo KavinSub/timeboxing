@@ -5,6 +5,9 @@ window.onresize = reinitialize;
 
 // Anything that must be done on first time load
 function initialize(){
+	// Timer
+	TimerManager.initialize();
+
 	// Task related functions
 	initializeTasks();
 	taskInputDisableCopyPaste();
@@ -17,6 +20,8 @@ function initialize(){
 
 // Anything that must be done on window resize
 function reinitialize(){
+	TimerManager.reinitialize();
+
 	CalendarView.clearCalendar();
 	CalendarView.drawCalendar();
 
