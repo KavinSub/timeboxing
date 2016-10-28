@@ -12,12 +12,16 @@ function initialize(){
 
 	// Stats related functions
 	CalendarView.drawCalendar();
+	BubbleChartView.drawBubbleChart();
 }
 
 // Anything that must be done on window resize
 function reinitialize(){
 	CalendarView.clearCalendar();
 	CalendarView.drawCalendar();
+
+	BubbleChartView.clearChart();
+	BubbleChartView.drawBubbleChart();
 }
 
 function initializeTasks(){

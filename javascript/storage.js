@@ -145,8 +145,8 @@ class TimeboxStorageHelper {
 	}
 
 	static storeTimeboxAtTime(timebox){
-		var day = timebox.getDate();
-		var hour = timebox.getHours();
+		var day = timebox.dateCreated.getDay();
+		var hour = timebox.dateCreated.getHours();
 
 		var key = [timeboxesKey, day, hour].join("-");
 
@@ -165,6 +165,11 @@ class TimeboxStorageHelper {
 
 		var key = [timeboxesKey, year, month, date].join("-");
 
+		return Storage.get(key);
+	}
+
+	static getTimeboxesAtTime(day, hour){
+		var key = [timeboxesKey, day, hour].join("-");
 		return Storage.get(key);
 	}
 

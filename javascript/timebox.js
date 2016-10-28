@@ -198,7 +198,176 @@ class CalendarView {
 class BubbleChartView {
 
 	static drawBubbleChart(){
+		BubbleChartView.drawGrid();
+		BubbleChartView.drawLabels();
+		BubbleChartView.drawBubbles();
+	}
 
+	// [1] Draw horizontal lines
+	// [2] Draw vertical lines
+	// [3] Add group elements
+	static drawGrid(){
+		var chart = document.getElementById("bubble-chart");
+		var box = BubbleChartView.getBoxDimensions();
+
+		// [1]
+		for(var i = 0; i <= 7; i++){
+			var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+			line.setAttribute("x1", 0);
+			line.setAttribute("y1", i * box.height);
+			line.setAttribute("x2", box.width * 24);
+			line.setAttribute("y2", i * box.height);
+			line.setAttribute("stroke-width", 2);
+			line.setAttribute("stroke", "#383F51");
+			chart.appendChild(line);
+		}
+
+		// [2]
+		var tickSize = 0.2 * box.height;
+		for(var i = 0; i <= 24; i++){
+			if(i == 0 || i == 24){
+				var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+				line.setAttribute("x1", i * box.width);
+				line.setAttribute("y1", 0);
+				line.setAttribute("x2", i * box.width);
+				line.setAttribute("y2", 7 * box.height);
+				line.setAttribute("stroke-width", 2);
+				line.setAttribute("stroke", "#383F51");
+				chart.appendChild(line);
+			}else{
+				for(var j = 0; j < 7; j++){
+					var upperTick = document.createElementNS("http://www.w3.org/2000/svg", "line");
+					upperTick.setAttribute("x1", i * box.width);
+					upperTick.setAttribute("y1", j * box.height);
+					upperTick.setAttribute("x2", i * box.width);
+					upperTick.setAttribute("y2", j * box.height + tickSize);
+					upperTick.setAttribute("stroke-width", 1);
+					upperTick.setAttribute("stroke", "#383F51");
+					chart.appendChild(upperTick);
+				}
+			}
+		}
+
+		// [3]
+		for(var i = 0; i < 7; i++){
+			for(var j = 0; j < 24; j++){
+				var g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+				g.setAttribute("id", ["bc-", i, ",", j].join(""));
+				g.setAttribute("transform", ["translate(", j * box.width - box.width, ",", i * box.height, ")"].join(""));
+				chart.appendChild(g);
+			}
+		}
+	}
+
+	// [1] Draw y-axis labels
+	// [2] Draw x-axis labels
+	static drawLabels(){
+		var chart = document.getElementById("bubble-chart");
+		var box = BubbleChartView.getBoxDimensions();
+		
+		// [1]
+		var labels = ["S", "M", "T", "W", "T", "F", "S"];
+		for(var i = 0; i < labels.length; i++){
+			var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+			text.innerHTML = labels[i];
+			text.setAttribute("font-size", box.height/5);
+			text.setAttribute("color", "#383F51");
+			text.setAttribute("x", 2);
+			text.setAttribute("y", i * box.height + box.height/2 + box.height/10);
+			chart.appendChild(text);
+		}
+
+		// [2]
+		var suffix = ["a", "p"];
+		for(var i = 0; i < 24; i++){
+			var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+			var hour = i % 12 ? i % 12:12;
+			text.innerHTML = hour + suffix[Math.floor(i/12)];
+			text.setAttribute("font-size", box.height/5);
+			text.setAttribute("color", "#383F51");
+			text.setAttribute("x", i * box.width + box.width/2 - box.height/10);
+			text.setAttribute("y", 7 * box.height - 2);
+			chart.appendChild(text);
+		}	
+	}
+
+	static getBoxDimensions(){
+		var chart = document.getElementById("bubble-chart");
+		var rect = chart.getBoundingClientRect();
+		return {
+			height: rect.height/7,
+			width: rect.width/24
+		};
+	}
+
+	// Returns timebox data in a format that is readily used by drawBubbles
+	static getDataset(){
+		var days = 7;
+		var hours = 24;
+		var min = 0;
+		var max = 0;
+
+		var data = [];
+
+		for(var day = 0; day < days; day++){
+			for(var hour = 0; hour < hours; hour++){
+				var time = TimeboxStorageHelper.getTimeboxesAtTime(day, hour);
+				if(time != null){
+					if(time != 0){
+						if(min != 0){
+							min = Math.min(time, min);
+						}else{
+							min = time;
+						}
+						max = Math.max(time, max);
+					}
+					data.push(parseInt(time));
+				}else{
+					data.push(0);
+				}
+			}
+		}
+		return {
+			data: data,
+			min: min,
+			max: max
+		};
+	}
+
+	// [1] Compute radii range
+	// [2] Draw bubbles
+	static drawBubbles(){
+		var dataset = BubbleChartView.getDataset();
+		var box = BubbleChartView.getBoxDimensions();
+
+		// [1]
+		var minRadius = box.width/8;
+		var maxRadius = box.width/2;
+
+		// [2]
+		for(var day = 0; day < 7; day++){
+			for(var hour = 0; hour < 24; hour++){
+				var time = dataset.data[day * 24 + hour];
+				var group = document.getElementById(["bc-", day, ",", hour].join(""));
+				if(time != 0){ // Only draw bubbles that have positive time
+					var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+					circle.setAttribute("cx", box.width/2);
+					circle.setAttribute("cy", box.height/2);
+					circle.setAttribute("r", minRadius + ((time - dataset.min)/(dataset.max - dataset.min)) * (maxRadius - minRadius));
+					var fraction = ((time - dataset.min)/(dataset.max - dataset.min));
+					circle.setAttribute("fill", "#FF3C38");
+
+					group.appendChild(circle);
+				}
+			}
+		}
+	}
+
+	static clearChart(){
+		var chart = document.getElementById("bubble-chart");
+		while(chart.firstChild){
+			chart.removeChild(chart.firstChild);
+		}
 	}
 
 }

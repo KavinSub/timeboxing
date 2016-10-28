@@ -16,11 +16,13 @@
 	height: 240px;
 }
 
-.bubble-container {}
+.bubble-container {
+	margin-top: 30px;
+}
 
 .bubble-chart {
-	width: 350px;
-	height: 350px;
+	height: 280px;
+	width: 480px;
 }
 
 @media (min-width: 768px) {
@@ -33,17 +35,31 @@
 		width: 700px;
 		height: 600px;
 	}
+
+	.bubble-container {
+		margin-top: 50px;
+	}
+
+	.bubble-chart {
+		height: 420px;
+		width: 720px;
+	}
 }
 
 @media (min-width: 992px) {
 
-	.calendar-header {
-
-	}
-
 	.calendar {
 		width: 910px;
 		height: 780px;
+	}
+
+	.bubble-container {
+		margin-top: 70px;
+	}
+
+	.bubble-chart {
+		height: 560px;
+		width: 960px;
 	}
 
 }
