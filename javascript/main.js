@@ -5,6 +5,9 @@ window.onresize = reinitialize;
 
 // Anything that must be done on first time load
 function initialize(){
+	// Timer
+	TimerManager.initialize();
+
 	// Task related functions
 	initializeTasks();
 	taskInputDisableCopyPaste();
