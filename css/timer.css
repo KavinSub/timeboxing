@@ -37,6 +37,8 @@
 
 .timer-slider {
 	width: 300px;
+	min-width: 0px;
+	max-width: 300px;
 	height: 2px;
 	background-color: #FF3C38;
 	top: 13px;
@@ -79,7 +81,42 @@
 }
 
 @media (min-width: 992px) {
+	.timer {
+		width: 400px;
+		height: 266px;
+	}
 
+	.timer-time-container {
+		width: 400px;
+		height: 200px;
+	}
+
+	.timer-time {
+		font-size: 110px;
+	}
+
+	.timer-slider {
+		width: 400px;
+		min-width: 0px;
+		max-width: 400px;
+		top: 16px;
+	}
+
+	.timer-slider-control {
+		height: 30px;
+		width: 30px;
+		border-radius: 15px;
+	}
+
+	.timer-controls {
+		width: 400px;
+		height: 60px;
+	}
+
+	.timer-button {
+		width: 40px;
+		height: 40px;
+	}
 }
 
 @media (min-width: 1200px) {

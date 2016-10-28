@@ -20,6 +20,8 @@ function initialize(){
 
 // Anything that must be done on window resize
 function reinitialize(){
+	TimerManager.reinitialize();
+
 	CalendarView.clearCalendar();
 	CalendarView.drawCalendar();
 
