@@ -16,16 +16,37 @@ class TimerManager {
 		TimerManager.setTimerSliderControlPosition(x);
 
 		TimerManager.initializeSliderControls();
+
+		TimerStateMachine.initialize();
 	}
 
 	// Called on window resize
 	static reinitialize(){
-		var x = TimerManager.timeToPosition(currentTime);
 		maxWidth = document.getElementById("timer").getBoundingClientRect().width;
-		TimerManager.setTimerSliderPosition(x);
-		TimerManager.setTimerSliderControlPosition(x);
+		if(state == "READY"){
+			var x = TimerManager.timeToPosition(currentTime);
 
-		TimerManager.initializeSliderControls();
+			TimerManager.setTimerSliderPosition(x);
+			TimerManager.setTimerSliderControlPosition(x);
+		}else{
+			var time = runningTime;
+
+			var minutes = Math.floor(time/60);
+			var seconds = time % 60;
+
+			var timerTime = document.getElementById("timer-time");
+			timerTime.innerHTML = TimerManager.formatTime(minutes, seconds);
+
+			TimerManager.setTimerSliderState(time);
+		}
+	}
+
+	// Set slider remaining based on timer width, time remaining
+	static setTimerSliderState(time){
+		var percentage = time/(currentTime * 60);
+		var width = percentage * maxWidth;
+
+		TimerManager.setTimerSliderPosition(width);
 	}
 
 
@@ -143,5 +164,102 @@ class TimerManager {
 		body.addEventListener("touchend", function(){
 			mousedown = false;
 		});
+	}
+}
+
+var state = "READY";
+var runningTime;
+
+var playButton = document.getElementById("play-button");
+var pauseButton = document.getElementById("pause-button");
+var stopButton = document.getElementById("stop-button");
+
+var countdownTimer;
+
+class TimerStateMachine {
+	static initialize(){
+
+		playButton.addEventListener("click", TimerStateMachine.play);
+		pauseButton.addEventListener("click", TimerStateMachine.pause);
+		stopButton.addEventListener("click", TimerStateMachine.stop);
+
+		pauseButton.style.display = "none";
+		stopButton.style.display = "none";
+	}
+
+	static play(){
+
+		if(state == "READY"){
+
+			playButton.style.display = "none";
+			pauseButton.style.display = "";
+			stopButton.style.display = "";
+			document.getElementById("timer-slider-control").style.display = "none";
+
+			TimerManager.setTimerSliderPosition(maxWidth);
+
+			runningTime = currentTime * 60;
+
+			countdownTimer = setInterval(TimerStateMachine.tick, 1000);
+
+			state = "RUNNING";
+		}
+
+		if(state == "PAUSED"){
+			playButton.style.display = "none";
+			pauseButton.style.display = "";
+			stopButton.style.display = "";
+
+			countdownTimer = setInterval(TimerStateMachine.tick, 1000);
+
+			state = "RUNNING";
+		}
+	}
+
+	static pause(){
+		if(state == "RUNNING"){
+			playButton.style.display = "";
+			pauseButton.style.display = "none";
+			stopButton.style.display = "";
+
+			clearInterval(countdownTimer);
+
+			state = "PAUSED";
+		}
+	}
+
+	static stop(){
+		if(state == "RUNNING" || state == "PAUSED" || state == "READY"){
+			playButton.style.display = "";
+			pauseButton.style.display = "none";
+			stopButton.style.display = "none";
+
+			clearInterval(countdownTimer);
+
+			document.getElementById("timer-time").innerHTML = TimerManager.formatTime(currentTime, 0);
+			TimerManager.setTimerSliderPosition(TimerManager.timeToPosition(currentTime));
+			document.getElementById("timer-slider-control").style.display = "";
+
+			state = "READY";
+		}
+	}
+
+	static tick(){
+		if(runningTime > 0){
+			runningTime -= 1;
+
+			// Update display
+			document.getElementById("timer-time").innerHTML = TimerManager.formatTime(Math.floor(runningTime/60), runningTime % 60);
+
+			// Update slider
+			TimerManager.setTimerSliderState(runningTime);
+		}else {
+			TimerStateMachine.end();
+		}
+	}
+
+	static end(){
+		// Ding
+		TimerStateMachine.stop();
 	}
 }

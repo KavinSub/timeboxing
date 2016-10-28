@@ -31,9 +31,12 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	color: #383F51;
 }
 
-.timer-slider-container {}
+.timer-slider-container {
+	height: 24px;
+}
 
 .timer-slider {
 	width: 300px;
@@ -93,6 +96,10 @@
 
 	.timer-time {
 		font-size: 110px;
+	}
+
+	.timer-slider-container {
+		height: 30px;
 	}
 
 	.timer-slider {
