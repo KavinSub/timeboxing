@@ -260,6 +260,9 @@ class TimerStateMachine {
 
 	static end(){
 		// Ding
+		var timebox = new Timebox(currentTime);
+		TimeboxStorageHelper.storeTimebox(timebox);
+		TimeboxManager.updateViews();
 		TimerStateMachine.stop();
 	}
 }
