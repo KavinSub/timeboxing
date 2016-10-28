@@ -1,0 +1,69 @@
+.stats-container {
+	display: block;
+	text-align: center;
+}
+
+.calendar-container {}
+
+.calendar-header {
+	color: #383F51;
+}
+
+.calendar {
+	display: inline;
+	margin-top: 10px;
+	width: 280px;
+	height: 240px;
+}
+
+.bubble-container {
+	margin-top: 30px;
+}
+
+.bubble-chart {
+	height: 280px;
+	width: 480px;
+}
+
+@media (min-width: 768px) {
+
+	.calendar-header {
+		font-size: 60px;
+	}
+
+	.calendar {
+		width: 700px;
+		height: 600px;
+	}
+
+	.bubble-container {
+		margin-top: 50px;
+	}
+
+	.bubble-chart {
+		height: 420px;
+		width: 720px;
+	}
+}
+
+@media (min-width: 992px) {
+
+	.calendar {
+		width: 910px;
+		height: 780px;
+	}
+
+	.bubble-container {
+		margin-top: 70px;
+	}
+
+	.bubble-chart {
+		height: 560px;
+		width: 960px;
+	}
+
+}
+
+@media (min-width: 1200px) {
+
+}

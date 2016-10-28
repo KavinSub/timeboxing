@@ -1,11 +1,27 @@
 var inputFieldId = "task-field";
 
 window.onload = initialize;
+window.onresize = reinitialize;
 
+// Anything that must be done on first time load
 function initialize(){
+	// Task related functions
 	initializeTasks();
 	taskInputDisableCopyPaste();
 	taskInputEnterAction();
+
+	// Stats related functions
+	CalendarView.drawCalendar();
+	BubbleChartView.drawBubbleChart();
+}
+
+// Anything that must be done on window resize
+function reinitialize(){
+	CalendarView.clearCalendar();
+	CalendarView.drawCalendar();
+
+	BubbleChartView.clearChart();
+	BubbleChartView.drawBubbleChart();
 }
 
 function initializeTasks(){

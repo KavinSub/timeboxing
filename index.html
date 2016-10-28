@@ -4,6 +4,7 @@
 	<title>Timeboxing</title>
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/tasks.css">
+	<link rel="stylesheet" type="text/css" href="css/stats.css">
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 </head>
@@ -14,8 +15,20 @@
 		<ul id="task-list" class="task-list col-s-10">
 		</ul>
 	</div>
+	<div class="stats-container col-s-12 col-m-12 col-12">
+		<div class="calendar-container">
+			<h1 id="calendar-header" class="calendar-header">January 2016</h1>
+			<svg id="calendar" class="calendar">
+			</svg>
+		</div>
+		<div class="bubble-container">
+			<svg id="bubble-chart" class="bubble-chart">
+			</svg>
+		</div>
+	</div>
 	<script type="text/javascript" src="javascript/tasks.js"></script>
 	<script type="text/javascript" src="javascript/storage.js"></script>
 	<script type="text/javascript" src="javascript/main.js"></script>
+	<script type="text/javascript" src="javascript/timebox.js"></script>
 </body>
 </html>
