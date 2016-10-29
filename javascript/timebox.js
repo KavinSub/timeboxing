@@ -339,7 +339,6 @@ class BubbleChartView {
 	// [2] Draw bubbles
 	static drawBubbles(){
 		var dataset = BubbleChartView.getDataset();
-		console.log(dataset.data.length);
 		if(dataset.min == 0 && dataset.max == 0){
 			return;
 		}
