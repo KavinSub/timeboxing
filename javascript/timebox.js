@@ -104,6 +104,7 @@ class CalendarView {
 	// [1] Get the time spent from local storage
 	// [2] Draw the time bubbles
 	static setTimeAtDate(date){
+
 		// [1]
 		var time = TimeboxStorageHelper.getTimeAtDate(date);
 		if(time == null){
