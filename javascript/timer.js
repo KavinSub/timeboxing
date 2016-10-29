@@ -259,7 +259,10 @@ class TimerStateMachine {
 	}
 
 	static end(){
-		// Ding
+		var audio = new Audio('./assets/audio/alarm.mp3');
+		audio.play();
+		// console.log(audio);
+
 		var timebox = new Timebox(currentTime);
 		TimeboxStorageHelper.storeTimebox(timebox);
 		TimeboxManager.updateViews();

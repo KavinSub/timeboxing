@@ -33,6 +33,14 @@
 	height: 24px;
 }
 
+.timer-slider-backdrop {
+	width: 300px;
+	height: 2px;
+	top: 15px;
+	position: relative;
+	background-color: #383F51;
+}
+
 .timer-slider {
 	width: 300px;
 	min-width: 0px;
@@ -95,6 +103,11 @@
 
 	.timer-slider-container {
 		height: 30px;
+	}
+
+	.timer-slider-backdrop {
+		width: 400px;
+		top: 18px;
 	}
 
 	.timer-slider {

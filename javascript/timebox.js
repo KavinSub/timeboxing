@@ -255,7 +255,7 @@ class BubbleChartView {
 			for(var j = 0; j < 24; j++){
 				var g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 				g.setAttribute("id", ["bc-", i, ",", j].join(""));
-				g.setAttribute("transform", ["translate(", j * box.width - box.width, ",", i * box.height, ")"].join(""));
+				g.setAttribute("transform", ["translate(", j * box.width, ",", i * box.height, ")"].join(""));
 				chart.appendChild(g);
 			}
 		}
