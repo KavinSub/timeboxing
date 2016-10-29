@@ -14,6 +14,7 @@ function initialize(){
 	taskInputEnterAction();
 
 	// Stats related functions
+	CalendarView.initializeControls();
 	CalendarView.drawCalendar();
 	BubbleChartView.drawBubbleChart();
 }

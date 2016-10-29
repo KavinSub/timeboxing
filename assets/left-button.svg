@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 30 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.1 (33804) - http://www.bohemiancoding.com/sketch -->
+    <title>left-button</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-233.000000, -214.000000)" fill="#383F51">
+            <polygon id="left-button" transform="translate(248.000000, 234.000000) scale(-1, 1) rotate(90.000000) translate(-248.000000, -234.000000) " points="248 219 268 249 228 249"></polygon>
+        </g>
+    </g>
+</svg>

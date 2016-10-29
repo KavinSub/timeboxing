@@ -3,17 +3,40 @@
 	text-align: center;
 }
 
-.calendar-container {}
+.calendar-container {
+	margin-top: 30px;
+}
 
 .calendar-header {
 	color: #383F51;
+	display: inline;
+	float: left;
+	margin: 0px;
 }
 
 .calendar {
-	display: inline;
+	display: inline-block;
 	margin-top: 10px;
 	width: 280px;
 	height: 240px;
+}
+
+.calendar-header-container {
+	display: inline-block;
+	text-align: center;
+}
+
+.calendar-control-button {
+	border: 0;
+	position: relative;
+	cursor: pointer;
+	outline: none;
+	width: 25px;
+	height: 25px;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 7px;
 }
 
 .bubble-container {
@@ -29,6 +52,14 @@
 
 	.calendar-header {
 		font-size: 60px;
+	}
+
+	.calendar-control-button {
+		width: 40px;
+		height: 40px;
+		margin-left: 20px;
+		margin-right: 20px;
+		margin-top: 19px;
 	}
 
 	.calendar {

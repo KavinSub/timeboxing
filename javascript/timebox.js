@@ -21,6 +21,8 @@ class TimeboxManager {
 
 }
 
+var currentDate = new Date();
+
 class CalendarView {
 
 	static drawCalendar(){
@@ -76,7 +78,7 @@ class CalendarView {
 	}
 
 	static drawNumbers(){
-		var today = new Date();
+		var today = currentDate;
 		var year = today.getFullYear();
 		var month = today.getMonth();
 
@@ -136,9 +138,9 @@ class CalendarView {
 		}
 	}
 
-	// Draws all the timeboxes for this month
+	// Draws all the timeboxes for the month
 	static setTimeThisMonth(){
-		var today = new Date();
+		var today = currentDate;
 		var year = today.getFullYear();
 		var month = today.getMonth();
 
@@ -149,7 +151,7 @@ class CalendarView {
 	}
 
 	static setHeader(){
-		var today = new Date();
+		var today = currentDate;
 		var header = [CalendarView.getMonth(today.getMonth()), today.getFullYear()].join(" ");
 
 		var calendarHeader =  document.getElementById("calendar-header");
@@ -183,7 +185,7 @@ class CalendarView {
 
 	// Helper function, returns the name of a month given the number
 	static getMonth(monthNumber){
-		var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novemeber", "December"];
+		var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 		return months[monthNumber];
 	}
 
@@ -193,6 +195,35 @@ class CalendarView {
 		while(calendar.firstChild){
 			calendar.removeChild(calendar.firstChild);
 		}
+	}
+
+	static drawPreviousMonth(){
+		var month = currentDate.getMonth() - 1;
+		var year = currentDate.getFullYear();
+		if(month == -1){
+			month = 11;
+			year = year - 1;
+		}
+		currentDate = new Date(year, month);
+		CalendarView.clearCalendar();
+		CalendarView.drawCalendar();
+	}
+
+	static drawNextMonth(){
+		var month = currentDate.getMonth() + 1;
+		var year = currentDate.getFullYear();
+		if(month == 12){
+			month = 0;
+			year = year + 1;
+		}
+		currentDate = new Date(year, month);
+		CalendarView.clearCalendar();
+		CalendarView.drawCalendar();
+	}
+
+	static initializeControls(){
+		document.getElementById("left-button").addEventListener("click", CalendarView.drawPreviousMonth);
+		document.getElementById("right-button").addEventListener("click", CalendarView.drawNextMonth);
 	}
 
 }
