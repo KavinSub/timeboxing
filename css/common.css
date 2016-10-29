@@ -29,6 +29,7 @@ a:hover, a:active { text-decoration: none; }
     width: 80px;
     height: 80px;
     float: left;
+    margin-right: 20px;
 }
 
 .header-title {
@@ -101,6 +102,10 @@ a:hover, a:active { text-decoration: none; }
     .col-10 {width: 83.33%;}
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
+
+    .logo {
+        margin-right: 40px;
+    }
 
     .header-title {
         font-size: 70px;
