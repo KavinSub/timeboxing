@@ -47,7 +47,7 @@ class TaskManager {
 
 		var taskRemove = document.createElement("p");
 		taskRemove.className = taskElements.remove;
-		taskRemove.className += " col-s-1";
+		taskRemove.className += " col-s-1 unselectable";
 		taskRemove.innerHTML = "x";
 		taskRemove.id = taskElements.remove + "-" + task.id;
 		taskRemove.addEventListener("click", TaskManager.deleteTask);
