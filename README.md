@@ -4,7 +4,7 @@ Timeboxing is a great way of breaking your work up into manageable chunks. The k
 
 https://kavinsub.github.io/timeboxing/
 
-I wanted to build an app that keeps track of these timeboxes for you, and displays this data in a visual manner. These timeboxes are only accounted for if the timer runs to completion. The app works fine in Chrome and Firefox. Unfortunately, not in Safari.
+This app will keep track of your completed timeboxes, and display this data. These timeboxes are only accounted for if the timer runs to completion. The app works fine in Chrome and Firefox. Unfortunately, not in Safari.
 
 ### The Calendar
 For every 30 minutes you work, the calendar will add a red dot.
