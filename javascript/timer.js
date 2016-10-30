@@ -168,6 +168,7 @@ class TimerManager {
 }
 
 var state = "READY";
+var timeStart;
 var runningTime;
 
 var playButton = document.getElementById("play-button");
@@ -201,6 +202,8 @@ class TimerStateMachine {
 			runningTime = currentTime * 60;
 
 			countdownTimer = setInterval(TimerStateMachine.tick, 1000);
+
+			timeStart = new Date().getTime();
 
 			state = "RUNNING";
 		}
@@ -246,7 +249,10 @@ class TimerStateMachine {
 
 	static tick(){
 		if(runningTime > 0){
-			runningTime -= 1;
+			runningTime = (currentTime * 60) - Math.floor(((new Date).getTime() - timeStart)/1000);
+			if(runningTime < 0){
+				runningTime = 0;
+			}
 
 			// Update display
 			document.getElementById("timer-time").innerHTML = TimerManager.formatTime(Math.floor(runningTime/60), runningTime % 60);
