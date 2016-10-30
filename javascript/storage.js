@@ -144,18 +144,33 @@ class TimeboxStorageHelper {
 		return key;		
 	}
 
+	// key := timeboxesKey-day-hour
 	static storeTimeboxAtTime(timebox){
 		var day = timebox.dateCreated.getDay();
 		var hour = timebox.dateCreated.getHours();
+		var minutes = timebox.dateCreated.getMinutes();
 
-		var key = [timeboxesKey, day, hour].join("-");
+		var timeRemaining = timebox.length;
+		var minutesToAdd = 60 - minutes;
+		while(timeRemaining > 0){
+			timeRemaining -= minutesToAdd;
+			var key = [timeboxesKey, day, hour].join("-");
 
-		var currentTime = Storage.get(key);
-		currentTime = currentTime ? parseInt(currentTime):0;
-		currentTime += timebox.length;
+			var currentTime = Storage.get(key);
+			currentTime = currentTime ? parseInt(currentTime):0;
+			currentTime += minutesToAdd;
 
-		Storage.set(key, currentTime);
-		return key;
+			Storage.set(key, currentTime);
+			hour = hour + 1;
+			if(hour == 24){
+				hour = 0;
+				day = (day + 1) % 7;
+			}
+
+			if(timeRemaining > 0){
+				minutesToAdd = Math.min(60, timeRemaining);
+			}
+		}
 	}
 
 	static getTimeAtDate(date){
