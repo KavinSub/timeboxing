@@ -26,6 +26,12 @@
 	text-align: center;
 }
 
+.stats-header-description {
+	color: #383F51;
+	font-size: 14px;
+	margin: 0px;
+}
+
 .calendar-control-button {
 	border: 0;
 	position: relative;
@@ -48,9 +54,19 @@
 	width: 480px;
 }
 
+.bubble-header {
+	color: #383F51;
+	margin: 0px;
+	margin-bottom: 10px;
+}
+
 @media (min-width: 768px) {
 
 	.calendar-header {
+		font-size: 60px;
+	}
+
+	.bubble-header {
 		font-size: 60px;
 	}
 
@@ -65,6 +81,10 @@
 	.calendar {
 		width: 700px;
 		height: 600px;
+	}
+
+	.stats-header-description {
+		font-size: 30px;
 	}
 
 	.bubble-container {
